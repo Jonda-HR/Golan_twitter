@@ -9,7 +9,7 @@ import (
 	"github.com/Jonda-HR/Goland_twitter/v2/db"
 	"github.com/Jonda-HR/Goland_twitter/v2/handlers"
 	"github.com/Jonda-HR/Goland_twitter/v2/models"
-	secretmanager "github.com/Jonda-HR/Goland_twitter/v2/secretManager"
+	secretManager "github.com/Jonda-HR/Goland_twitter/v2/secretManager"
 	"github.com/aws/aws-lambda-go/events"
 	lambda "github.com/aws/aws-lambda-go/lambda"
 )
@@ -32,7 +32,7 @@ func RunLambda(ctx context.Context, request events.APIGatewayProxyRequest) (*eve
 		return res, nil
 	}
 
-	SecretModel, err := secretmanager.GetSecret(os.Getenv("SecretName"))
+	SecretModel, err := secretManager.GetSecret(os.Getenv("SecretName"))
 	if err != nil {
 		res = &events.APIGatewayProxyResponse{
 			StatusCode: 400,
